@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <title>AR Senna Tower - Exemplo 2</title>
+  <title>AR Senna Tower - iOS e Android</title>
   <style>
     body {
       font-family: sans-serif;
-      margin: 0;
-      padding: 0;
       text-align: center;
+      margin: 0; padding: 0;
     }
     .main-image {
-      max-width: 100%;
+      width: 100%;
+      max-width: 600px; /* Tamanho máximo */
       height: auto;
       display: block;
-      margin: 0 auto;
+      margin: 20px auto;
     }
     .links-container {
       margin: 20px 0;
@@ -36,75 +36,121 @@
 </head>
 <body>
 
-  <!-- Imagem grande "page.png" -->
-  <img src="https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/page.png" 
-       alt="Senna Tower Image"
-       class="main-image" />
+  <!-- Imagem ilustrativa -->
+  <img 
+    class="main-image"
+    src="https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/page.png" 
+    alt="Senna Tower page" 
+  />
 
-  <!-- Container para links -->
+  <h1>Escolha um modelo para visualizar em AR</h1>
+
   <div class="links-container">
-    <h1>Modelos 3D</h1>
 
-    <!-- 1. SennaTowerMask.glb -->
-    <a class="ar-link" 
+    <!-- 1. SennaTowerMask -->
+    <a id="link-sennatowermask"
+       class="ar-link"
        href="https://arvr.google.com/scene-viewer/1.0
 ?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/SennaTowerMask.glb
 &title=SennaTowerMask
 &link=https://www.sennatower.com/
-&mode=ar_only" 
+&mode=ar_only"
        rel="ar"
-       target="_blank">SennaTowerMask</a>
-    
-    <!-- 2. TesteLuminanceAlphaRA.glb -->
-    <a class="ar-link"
+       target="_blank">
+      SennaTowerMask
+    </a>
+
+    <!-- 2. TesteLuminanceAlphaRA -->
+    <a id="link-luminance"
+       class="ar-link"
        href="https://arvr.google.com/scene-viewer/1.0
 ?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TesteLuminanceAlphaRA.glb
 &title=TesteLuminanceAlphaRA
 &link=https://www.sennatower.com/
 &mode=ar_only"
        rel="ar"
-       target="_blank">TesteLuminanceAlphaRA</a>
+       target="_blank">
+      TesteLuminanceAlphaRA
+    </a>
 
-    <!-- 3. TorreComCubos.glb -->
-    <a class="ar-link"
+    <!-- 3. TorreComCubos -->
+    <a id="link-cubos"
+       class="ar-link"
        href="https://arvr.google.com/scene-viewer/1.0
 ?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComCubos.glb
 &title=TorreComCubos
 &link=https://www.sennatower.com/
 &mode=ar_only"
        rel="ar"
-       target="_blank">TorreComCubos</a>
-    
-    <!-- 4. TorreComCubos_Baked.glb -->
-    <a class="ar-link"
+       target="_blank">
+      TorreComCubos
+    </a>
+
+    <!-- 4. TorreComCubos_Baked (Only Android) -->
+    <a id="link-cubosbaked"
+       class="ar-link"
        href="https://arvr.google.com/scene-viewer/1.0
 ?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComCubos_Baked.glb
 &title=TorreComCubos_Baked
 &link=https://www.sennatower.com/
 &mode=ar_only"
        rel="ar"
-       target="_blank">TorreComCubos_Baked</a>
-    
-    <!-- 5. TorreComParticulas.glb -->
-    <a class="ar-link"
+       target="_blank">
+      TorreComCubos_Baked (Only Android)
+    </a>
+
+    <!-- 5. TorreComParticulas -->
+    <a id="link-particulas"
+       class="ar-link"
        href="https://arvr.google.com/scene-viewer/1.0
 ?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComParticulas.glb
 &title=TorreComParticulas
 &link=https://www.sennatower.com/
 &mode=ar_only"
        rel="ar"
-       target="_blank">TorreComParticulas</a>
+       target="_blank">
+      TorreComParticulas
+    </a>
 
-    <!-- 6. TorreComParticulas_Baked.glb -->
-    <a class="ar-link"
+    <!-- 6. TorreComParticulas_Baked (Only Android) -->
+    <a id="link-particulasbaked"
+       class="ar-link"
        href="https://arvr.google.com/scene-viewer/1.0
 ?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComParticulas_Baked.glb
 &title=TorreComParticulas_Baked
 &link=https://www.sennatower.com/
 &mode=ar_only"
        rel="ar"
-       target="_blank">TorreComParticulas_Baked</a>
+       target="_blank">
+      TorreComParticulas_Baked (Only Android)
+    </a>
   </div>
 
+  <script>
+    // Verifica se é iOS (iPhone, iPad ou iPod)
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isIOS) {
+      // Ajustamos os links que têm .usdz disponível
+      
+      // 1. SennaTowerMask.usdz
+      document.getElementById('link-sennatowermask').href =
+        'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/SennaTowerMask.usdz';
+      
+      // 2. TesteLuminanceAlphaRA.usdz
+      document.getElementById('link-luminance').href =
+        'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TesteLuminanceAlphaRA.usdz';
+      
+      // 3. TorreComCubos.usdz
+      document.getElementById('link-cubos').href =
+        'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComCubos.usdz';
+
+      // 5. TorreComParticulas.usdz
+      document.getElementById('link-particulas').href =
+        'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComParticulas.usdz';
+
+      // 4 e 6 (Baked) não têm .usdz => continuam com .glb (Android Only)
+    }
+  </script>
 </body>
 </html>
