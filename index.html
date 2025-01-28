@@ -124,6 +124,20 @@
        target="_blank">
       TorreComParticulas_Baked (Only Android)
     </a>
+
+    <!-- 7. Predio (GLB + USDZ) -->
+    <a id="link-predio"
+       class="ar-link"
+       href="https://arvr.google.com/scene-viewer/1.0
+?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/Predio.glb
+&title=Predio
+&link=https://www.sennatower.com/
+&mode=ar_only"
+       rel="ar"
+       target="_blank">
+      Predio
+    </a>
+
   </div>
 
   <script>
@@ -149,7 +163,11 @@
       document.getElementById('link-particulas').href =
         'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/TorreComParticulas.usdz';
 
-      // 4 e 6 (Baked) não têm .usdz => continuam com .glb (Android Only)
+      // 7. Predio.usdz
+      document.getElementById('link-predio').href =
+        'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/Predio.usdz';
+      
+      // 4 e 6 (Baked) não têm .usdz => continuam com .glb (Only Android)
     }
   </script>
 </body>
