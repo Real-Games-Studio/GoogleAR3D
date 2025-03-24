@@ -52,7 +52,7 @@
     <div class="button-container">
         <button class="ar-button" data-file="SennaTowerRetopo">SennaTowerRetopo</button>
         <button class="ar-button" data-file="SennaTowerRetopoBranco">SennaTowerRetopoBranco</button>
-        <button class="ar-button" data-file="SennaTowerRetopo_Laranja">SennaTowerRetopo_Laranja</button>
+        <button class="ar-button" data-file="SennaTowerRetopo_Laranja">SennaTowerRetopoLaranja</button>
     </div>
 
     <script>
@@ -73,6 +73,7 @@
                     '&link=https://www.sennatower.com/' +
                     '&mode=ar_only';
             }
+            linkElement.click(); // Simula o clique no link
         }
 
         // Adiciona evento de clique aos botões
@@ -81,6 +82,11 @@
                 const file = button.getAttribute('data-file');
                 updateLink(file);
             });
+        });
+
+        // Cancela o clique na imagem de fundo
+        document.querySelector('.main-image').addEventListener('click', (event) => {
+            event.preventDefault();
         });
     </script>
 </body>
