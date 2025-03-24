@@ -20,6 +20,24 @@
             margin: 0 auto;
             cursor: pointer; /* Para indicar que é clicável */
         }
+
+        .button-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .ar-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -31,6 +49,12 @@
              alt="Senna Tower page" />
     </a>
 
+    <div class="button-container">
+        <button class="ar-button" data-file="SennaTowerRetopo">SennaTowerRetopo</button>
+        <button class="ar-button" data-file="SennaTowerRetopoBranco">SennaTowerRetopoBranco</button>
+        <button class="ar-button" data-file="SennaTowerRetopo_Laranja">SennaTowerRetopo_Laranja</button>
+    </div>
+
     <script>
         // Verifica se é iOS
         const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -38,17 +62,26 @@
         // Seleciona o link
         const linkElement = document.getElementById('ar-link');
 
-        if (isIOS) {
-            // Em iOS, apontamos diretamente para o arquivo .usdc
-            linkElement.href = 'https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/SennaTowerRetopo.usdz';
-        } else {
-            // Em Android, usamos o Scene Viewer com o arquivo .glb
-            linkElement.href = 'https://arvr.google.com/scene-viewer/1.0' +
-                '?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/SennaTowerRetopo.glb' +
-                '&title=SennaTower' +
-                '&link=https://www.sennatower.com/' +
-                '&mode=ar_only';
+        // Função para atualizar o link com base no arquivo selecionado
+        function updateLink(file) {
+            if (isIOS) {
+                linkElement.href = `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${file}.usdz`;
+            } else {
+                linkElement.href = 'https://arvr.google.com/scene-viewer/1.0' +
+                    `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${file}.glb` +
+                    '&title=SennaTower' +
+                    '&link=https://www.sennatower.com/' +
+                    '&mode=ar_only';
+            }
         }
+
+        // Adiciona evento de clique aos botões
+        document.querySelectorAll('.ar-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const file = button.getAttribute('data-file');
+                updateLink(file);
+            });
+        });
     </script>
 </body>
 </html>
