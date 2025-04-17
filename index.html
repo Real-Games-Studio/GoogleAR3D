@@ -20,6 +20,30 @@
             margin: 0 auto;
             cursor: pointer; /* Para indicar que é clicável */
         }
+
+        .button-container {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .ar-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+            .ar-button:hover {
+                background-color: #0056b3;
+            }
     </style>
 </head>
 <body>
@@ -31,33 +55,48 @@
              alt="Senna Tower page" />
     </a>
 
+    <!-- Botões para os arquivos -->
+    <div class="button-container">
+        <a class="ar-button" id="button-antigo" href="#" target="_blank">Antigo</a>
+        <a class="ar-button" id="button-metade" href="#" target="_blank">Metade</a>
+    </div>
+
     <script>
-        // Verifica se é iOS
-        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-        // Seleciona o link
-        const linkElement = document.getElementById('ar-link');
-
-        // Função para atualizar o link com base no arquivo selecionado
-        function updateLink() {
-            const file = isIOS ? 'SennaTowerRAExterno_Animacao.usdz' : 'SennaTowerRAExterno_Animacao.glb';
-            if (isIOS) {
-                linkElement.href = `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${file}`;
-            } else {
-                linkElement.href = 'https://arvr.google.com/scene-viewer/1.0' +
-                    `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${file}` +
-                    '&title=SennaTower' +
-                    '&link=https://www.sennatower.com/' +
-                    '&mode=ar_only';
+        // URLs base dos arquivos
+        const files = {
+            antigo: {
+                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Antigo.usdz',
+                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Antigo.glb'
+            },
+            metade: {
+                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_metade.usdz',
+                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Metade.glb'
             }
-            linkElement.click(); // Simula o clique no link
+        };
+
+        // Função para configurar os links
+        function configureLinks() {
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+            document.getElementById('button-antigo').href = isIOS
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.antigo.ios}`
+                : 'https://arvr.google.com/scene-viewer/1.0' +
+                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.antigo.android}` +
+                '&title=SennaTower' +
+                '&link=https://www.sennatower.com/' +
+                '&mode=ar_only';
+
+            document.getElementById('button-metade').href = isIOS
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.metade.ios}`
+                : 'https://arvr.google.com/scene-viewer/1.0' +
+                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.metade.android}` +
+                '&title=SennaTower' +
+                '&link=https://www.sennatower.com/' +
+                '&mode=ar_only';
         }
 
-        // Adiciona evento de clique na imagem de fundo
-        document.querySelector('.main-image').addEventListener('click', (event) => {
-            event.preventDefault();
-            updateLink();
-        });
+        // Configura os links ao carregar a página
+        configureLinks();
     </script>
 </body>
 </html>
