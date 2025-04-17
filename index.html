@@ -59,6 +59,7 @@
     <div class="button-container">
         <a class="ar-button" id="button-antigo" href="#" target="_blank">Antigo</a>
         <a class="ar-button" id="button-metade" href="#" target="_blank">Metade</a>
+        <a class="ar-button" id="button-novo" href="#" target="_blank">Novo</a> <!-- Novo botão -->
     </div>
 
     <script>
@@ -71,6 +72,10 @@
             metade: {
                 ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_metade.usdz',
                 android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Metade.glb'
+            },
+            novo: { // Novo arquivo
+                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_2.usdz',
+                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_2.glb'
             }
         };
 
@@ -90,6 +95,14 @@
                 ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.metade.ios}`
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.metade.android}` +
+                '&title=SennaTower' +
+                '&link=https://www.sennatower.com/' +
+                '&mode=ar_only';
+
+            document.getElementById('button-novo').href = isIOS // Configuração do novo botão
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.novo.ios}`
+                : 'https://arvr.google.com/scene-viewer/1.0' +
+                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.novo.android}` +
                 '&title=SennaTower' +
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
