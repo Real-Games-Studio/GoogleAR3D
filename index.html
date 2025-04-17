@@ -59,7 +59,8 @@
     <div class="button-container">
         <a class="ar-button" id="button-antigo" href="#" target="_blank">Antigo</a>
         <a class="ar-button" id="button-metade" href="#" target="_blank">Metade</a>
-        <a class="ar-button" id="button-novo" href="#" target="_blank">Novo</a> <!-- Novo botão -->
+        <a class="ar-button" id="button-novo" href="#" target="_blank">Novo</a>
+        <a class="ar-button" id="button-rotacionado" href="#" target="_blank">Rotacionado</a> <!-- Novo botão -->
     </div>
 
     <script>
@@ -73,9 +74,13 @@
                 ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_metade.usdz',
                 android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Metade.glb'
             },
-            novo: { // Novo arquivo
+            novo: {
                 ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_2.usdz',
                 android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_2.glb'
+            },
+            rotacionado: { // Novo arquivo
+                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Rotacionado_Opacidade_75_50.usdz',
+                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Rotacionado_Opacidade_75_50.glb'
             }
         };
 
@@ -99,10 +104,18 @@
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
 
-            document.getElementById('button-novo').href = isIOS // Configuração do novo botão
+            document.getElementById('button-novo').href = isIOS
                 ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.novo.ios}`
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.novo.android}` +
+                '&title=SennaTower' +
+                '&link=https://www.sennatower.com/' +
+                '&mode=ar_only';
+
+            document.getElementById('button-rotacionado').href = isIOS // Configuração do novo botão
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.rotacionado.ios}`
+                : 'https://arvr.google.com/scene-viewer/1.0' +
+                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.rotacionado.android}` +
                 '&title=SennaTower' +
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
