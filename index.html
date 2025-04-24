@@ -18,7 +18,8 @@
             object-fit: cover; /* Para garantir que a imagem cubra toda a área */
             display: block;
             margin: 0 auto;
-            cursor: pointer; /* Para indicar que é clicável */
+            position: absolute;
+            z-index: -1; /* Coloca a imagem atrás do botão */
         }
 
         .button-container {
@@ -26,8 +27,6 @@
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
         }
 
         .ar-button {
@@ -41,113 +40,45 @@
             text-decoration: none;
         }
 
-        .ar-button:hover {
-            background-color: #0056b3;
-        }
+            .ar-button:hover {
+                background-color: #0056b3;
+            }
     </style>
 </head>
 <body>
+    <!-- Imagem de fundo -->
+    <img class="main-image"
+         src="https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/page.png"
+         alt="Senna Tower page" />
 
-    <!-- Link que será o botão -->
-    <a id="ar-link" href="#" target="_blank">
-        <img class="main-image"
-             src="https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/page.png"
-             alt="Senna Tower page" />
-    </a>
-
-    <!-- Botões para os arquivos -->
+    <!-- Botão para o modelo 3D "Tamanho 1" -->
     <div class="button-container">
-        <a class="ar-button" id="button-antigo" href="#" target="_blank">Antigo</a>
-        <a class="ar-button" id="button-metade" href="#" target="_blank">Metade</a>
-        <a class="ar-button" id="button-novo" href="#" target="_blank">Novo</a>
-        <a class="ar-button" id="button-rotacionado" href="#" target="_blank">Rotacionado</a>
         <a class="ar-button" id="button-tamanho1" href="#" target="_blank">Tamanho 1</a>
-        <a class="ar-button" id="button-tamanho2" href="#" target="_blank">Tamanho 2</a> <!-- Novo botão -->
     </div>
 
     <script>
-        // URLs base dos arquivos
+        // URLs base do arquivo "Tamanho 1"
         const files = {
-            antigo: {
-                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Antigo.usdz',
-                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Antigo.glb'
-            },
-            metade: {
-                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_metade.usdz',
-                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Timing_Metade.glb'
-            },
-            novo: {
-                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_2.usdz',
-                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_2.glb'
-            },
-            rotacionado: { // Novo arquivo
-                ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Rotacionado_Opacidade_75_50.usdz',
-                android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Rotacionado_Opacidade_75_50.glb'
-            },
-            tamanho1: { // Novo arquivo
+            tamanho1: {
                 ios: 'Tamanho1.usdz',
                 android: 'Tamanho1.glb'
-            },
-            tamanho2: { // Novo arquivo
-                ios: 'Tamanho2.usdz',
-                android: 'Tamanho2.glb'
             }
         };
 
-        // Função para configurar os links
+        // Função para configurar o link do botão
         function configureLinks() {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-            document.getElementById('button-antigo').href = isIOS
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.antigo.ios}`
-                : 'https://arvr.google.com/scene-viewer/1.0' +
-                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.antigo.android}` +
-                '&title=SennaTower' +
-                '&link=https://www.sennatower.com/' +
-                '&mode=ar_only';
-
-            document.getElementById('button-metade').href = isIOS
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.metade.ios}`
-                : 'https://arvr.google.com/scene-viewer/1.0' +
-                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.metade.android}` +
-                '&title=SennaTower' +
-                '&link=https://www.sennatower.com/' +
-                '&mode=ar_only';
-
-            document.getElementById('button-novo').href = isIOS
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.novo.ios}`
-                : 'https://arvr.google.com/scene-viewer/1.0' +
-                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.novo.android}` +
-                '&title=SennaTower' +
-                '&link=https://www.sennatower.com/' +
-                '&mode=ar_only';
-
-            document.getElementById('button-rotacionado').href = isIOS // Configuração do novo botão
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.rotacionado.ios}`
-                : 'https://arvr.google.com/scene-viewer/1.0' +
-                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.rotacionado.android}` +
-                '&title=SennaTower' +
-                '&link=https://www.sennatower.com/' +
-                '&mode=ar_only';
-
-            document.getElementById('button-tamanho1').href = isIOS // Configuração do novo botão
+            document.getElementById('button-tamanho1').href = isIOS
                 ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.ios}`
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.android}` +
                 '&title=SennaTower' +
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
-
-            document.getElementById('button-tamanho2').href = isIOS // Configuração do novo botão
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho2.ios}`
-                : 'https://arvr.google.com/scene-viewer/1.0' +
-                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho2.android}` +
-                '&title=SennaTower' +
-                '&link=https://www.sennatower.com/' +
-                '&mode=ar_only';
         }
 
-        // Configura os links ao carregar a página
+        // Configura o link ao carregar a página
         configureLinks();
     </script>
 </body>
