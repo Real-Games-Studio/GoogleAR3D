@@ -41,9 +41,9 @@
             text-decoration: none;
         }
 
-            .ar-button:hover {
-                background-color: #0056b3;
-            }
+        .ar-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +60,9 @@
         <a class="ar-button" id="button-antigo" href="#" target="_blank">Antigo</a>
         <a class="ar-button" id="button-metade" href="#" target="_blank">Metade</a>
         <a class="ar-button" id="button-novo" href="#" target="_blank">Novo</a>
-        <a class="ar-button" id="button-rotacionado" href="#" target="_blank">Rotacionado</a> <!-- Novo botão -->
+        <a class="ar-button" id="button-rotacionado" href="#" target="_blank">Rotacionado</a>
+        <a class="ar-button" id="button-tamanho1" href="#" target="_blank">Tamanho 1</a>
+        <a class="ar-button" id="button-tamanho2" href="#" target="_blank">Tamanho 2</a> <!-- Novo botão -->
     </div>
 
     <script>
@@ -81,7 +83,15 @@
             rotacionado: { // Novo arquivo
                 ios: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Rotacionado_Opacidade_75_50.usdz',
                 android: 'SennaTowerRAExterno_Proposta_ScaleAnimation_Rotacionado_Opacidade_75_50.glb'
-            }
+            },
+            tamanho1: { // Novo arquivo
+                ios: 'Tamanho1.usdz',
+                android: 'Tamanho1.glb'
+            },
+            tamanho2: { // Novo arquivo
+                ios: 'Tamanho2.usdz',
+                android: 'Tamanho2.glb'
+            },
         };
 
         // Função para configurar os links
@@ -116,6 +126,22 @@
                 ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.rotacionado.ios}`
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.rotacionado.android}` +
+                '&title=SennaTower' +
+                '&link=https://www.sennatower.com/' +
+                '&mode=ar_only';
+
+            document.getElementById('button-rotacionado').href = isIOS // Configuração do novo botão
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.ios}`
+                : 'https://arvr.google.com/scene-viewer/1.0' +
+                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.android}` +
+                '&title=SennaTower' +
+                '&link=https://www.sennatower.com/' +
+                '&mode=ar_only';
+
+            document.getElementById('button-rotacionado').href = isIOS // Configuração do novo botão
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho2.ios}`
+                : 'https://arvr.google.com/scene-viewer/1.0' +
+                `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho2.android}` +
                 '&title=SennaTower' +
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
