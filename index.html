@@ -19,30 +19,9 @@
             display: block;
             margin: 0 auto;
             position: absolute;
-            z-index: -1; /* Coloca a imagem atrás do botão */
+            z-index: -1; /* Coloca a imagem atrás de outros elementos */
+            cursor: pointer; /* Indica que a imagem é clicável */
         }
-
-        .button-container {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .ar-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-            .ar-button:hover {
-                background-color: #0056b3;
-            }
     </style>
 </head>
 <body>
@@ -50,11 +29,6 @@
     <img class="main-image"
          src="https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/page.png"
          alt="Senna Tower page" />
-
-    <!-- Botão para o modelo 3D "Tamanho 1" -->
-    <div class="button-container">
-        <a class="ar-button" id="button-tamanho1" href="#" target="_blank">Tamanho 10x</a>
-    </div>
 
     <script>
         // URLs base do arquivo "Tamanho 1"
@@ -65,21 +39,24 @@
             }
         };
 
-        // Função para configurar o link do botão
+        // Função para configurar o link
         function configureLinks() {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-            document.getElementById('button-tamanho1').href = isIOS
+            const link = isIOS
                 ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.ios}`
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.android}` +
                 '&title=SennaTower' +
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
+
+            // Redireciona o usuário para o link configurado
+            window.location.href = link;
         }
 
-        // Configura o link ao carregar a página
-        configureLinks();
+        // Adiciona o evento de clique à imagem de fundo
+        document.querySelector('.main-image').addEventListener('click', configureLinks);
     </script>
 </body>
 </html>
