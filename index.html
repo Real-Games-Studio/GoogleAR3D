@@ -34,7 +34,7 @@
         // URLs base do arquivo "Tamanho 1"
         const files = {
             tamanho1: {
-                ios: 'Tamanho1.usdc',
+                ios: 'Tamanho1.usdz', // Alterado para .usdz
                 android: 'Tamanho1.glb'
             }
         };
@@ -44,7 +44,7 @@
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
             const link = isIOS
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.ios}`
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.ios}` // Link direto para .usdz
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.android}` +
                 '&title=SennaTower' +
