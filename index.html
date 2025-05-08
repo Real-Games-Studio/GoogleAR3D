@@ -40,7 +40,7 @@
         };
 
         // Função para configurar o link
-        function configureLinks() {
+        async function configureLinks() {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
             const link = isIOS
@@ -51,8 +51,18 @@
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
 
-            // Redireciona o usuário para o link configurado
-            window.location.href = link;
+            try {
+                // Verifica se o arquivo está acessível
+                const response = await fetch(link, { method: 'HEAD' });
+                if (!response.ok) {
+                    throw new Error('Arquivo não encontrado ou inacessível.');
+                }
+
+                // Abre o link em uma nova aba
+                window.open(link, '_blank');
+            } catch (error) {
+                alert('Erro ao acessar o recurso de AR: ' + error.message);
+            }
         }
 
         // Adiciona o evento de clique à imagem de fundo
