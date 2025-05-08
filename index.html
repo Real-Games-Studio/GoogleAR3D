@@ -40,29 +40,19 @@
         };
 
         // Função para configurar o link
-        async function configureLinks() {
+        function configureLinks() {
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
             const link = isIOS
-                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.ios}` // Link direto para .usdz
+                ? `https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/Tamanho1.usdz` // Link direto para .usdz
                 : 'https://arvr.google.com/scene-viewer/1.0' +
                 `?file=https://raw.githubusercontent.com/Real-Games-Studio/GoogleAR3D/main/${files.tamanho1.android}` +
                 '&title=SennaTower' +
                 '&link=https://www.sennatower.com/' +
                 '&mode=ar_only';
 
-            try {
-                // Verifica se o arquivo está acessível
-                const response = await fetch(link, { method: 'HEAD' });
-                if (!response.ok) {
-                    throw new Error('Arquivo não encontrado ou inacessível.');
-                }
-
-                // Abre o link em uma nova aba
-                window.open(link, '_blank');
-            } catch (error) {
-                alert('Erro ao acessar o recurso de AR: ' + error.message);
-            }
+            // Redireciona o usuário para o link configurado
+            window.location.href = link;
         }
 
         // Adiciona o evento de clique à imagem de fundo
